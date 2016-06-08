@@ -1,0 +1,86 @@
+﻿<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title></title>
+<meta http-equiv="X-UA-Compatible" content="edge,chrome=1"  />
+<meta http-equiv="Cache-Control" content="no-siteapp" /> <!-- 避免转码 -->
+<meta name="viewport"   content="initial-scale=1.0,user-scalable=no,maximum-scale=1,width=device-width"  />
+<meta name="renderer" content="webkit|ie-comp|ie-stand"> 
+<meta name="format-detection" content="telephone=no">
+<meta name="format-detection" content="address=no">
+<meta name="format-detection" content="email=no" >
+<meta name="apple-mobile-web-app-title" content="">
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+<meta name="screen-orientation" content="portrait"> 
+<meta name="x5-orientation" content="portrait"> 
+<meta name="msapplication-tap-highlight" content="no"> 
+<meta name="HandheldFriendly" content="true">  
+<link href="css/bootstrap.css" rel="stylesheet" type="text/css" >
+<link href="css/index.css"  rel="stylesheet" type="text/css">
+
+</head>
+<body>
+<div id="wrap" >
+<h1>娃像谁</h1>
+<div class="pic_panel">
+
+    <div class="picture" id="familyPic">
+        <i class="icon iconfont icon-child human"></i>
+    </div>
+    <div class="fanilylike1"></div>
+    <div class="fanilylike2"></div>
+    <form>
+        <input type="button" class="next" id="uploadImage" value="GO !!!">
+    </form>
+
+
+</div>
+
+
+</div>
+    <img id="loading" src="fonts/loading.gif" />
+    <script src="js/jweixin-1.0.0.js"></script>
+    <script src="js/zepto.min.js"></script>
+    <script src="js/family.js"> </script>
+    <script>
+
+    $(function () {
+        var timestamp = Date.parse(new Date())/1000;
+        var localurl = encodeURIComponent(window.location.href.split('#')[0]);
+        $.ajax({
+            url: 'http://www.6666666666.cn/wxapi/api/weixin',
+            dataType: "json",
+            data: {
+                noncestr: 'FFUmZdbWVT9mVP7a',
+                timestamp: timestamp,
+                url: window.location.href.split('#')[0]
+            },
+            success: function (data) {
+                wxFace(data.toLowerCase());
+            }
+        })
+        function wxFace(signature) {
+            wx.config({
+                debug: false,
+                appId: 'wxec54ec7f720993da',
+                timestamp: timestamp,
+                nonceStr: 'FFUmZdbWVT9mVP7a',
+                signature: signature,
+                jsApiList: [
+                  'checkJsApi',
+                  'onMenuShareTimeline',
+                  'onMenuShareAppMessage',
+                  'chooseImage',
+                  'previewImage',
+                  'uploadImage',
+                  'downloadImage'
+                ]
+            });
+        }
+    });
+    </script>
+
+</body>
+</html>

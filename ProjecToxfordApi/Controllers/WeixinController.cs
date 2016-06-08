@@ -14,17 +14,10 @@ namespace ProjecToxfordApi.Controllers
 {
     public class WeixinController : ApiController
     {
-        //private const string TOKEN = "zhishi2liliang";
-
-        //private const string APPID = "wx933073c0072d38bc";
-        //private const string APPSECRET = "6137405e897ec1f61d08a4d9fec1d90e";
-
-
-
         private const string TOKEN = "weixin";
 
-        private const string APPID = "wxec54ec7f720993da";
-        private const string APPSECRET = "26759c93832e2d0efe40d1d80f479f69";
+        private const string APPID = "";
+        private const string APPSECRET = "";
 
         private HttpClient client;
 

@@ -1,0 +1,114 @@
+﻿<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>脸探</title>
+<meta name="viewport"   content="initial-scale=1.0,user-scalable=no,maximum-scale=1,width=device-width"  /> 
+<link href="css/weui.css" rel="stylesheet" />
+<link href="css/example.css" rel="stylesheet" />
+
+</head>
+<body>
+<div class="page">
+    <div class="hd">
+        <h1 class="page_title">脸探</h1>
+        <p class="page_desc">测测脸的相似度</p>
+    </div>
+    <div class="bd">
+        <div class="weui_panel weui_panel_access">
+            <div class="weui_panel_hd">娃像谁</div>
+            <div class="weui_panel_bd">
+                <a href="family.html" class="weui_media_box weui_media_appmsg">
+                    <div class="weui_media_hd">
+                        <img class="weui_media_appmsg_thumb" src="fonts/family.jpg" alt="">
+                    </div>
+                    <div class="weui_media_bd">
+                        <h4 class="weui_media_title">三人照</h4>
+                        <p class="weui_media_desc">上传一家三口三人照，立即知道孩子与父母相像指数</p>
+                    </div>
+                </a>
+                <a href="family3.html" class="weui_media_box weui_media_appmsg">
+                    <div class="weui_media_hd">
+                        <img class="weui_media_appmsg_thumb" src="fonts/one.jpg" alt="">
+                    </div>
+                    <div class="weui_media_bd">
+                        <h4 class="weui_media_title">单人照</h4>
+                        <p class="weui_media_desc">上传一家三口各自照片，立即知道孩子与父母相像指数</p>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="bd">
+        <div class="weui_panel weui_panel_access">
+            <div class="weui_panel_hd">夫妻相</div>
+            <div class="weui_panel_bd">
+                <a href="couple2.html" class="weui_media_box weui_media_appmsg">
+                    <div class="weui_media_hd">
+                        <img class="weui_media_appmsg_thumb" src="fonts/couple.jpg" alt="">
+                    </div>
+                    <div class="weui_media_bd">
+                        <h4 class="weui_media_title">双人照</h4>
+                        <p class="weui_media_desc">上传你和TA的双人照，你立即知道你们的天生缘分指数</p>
+                    </div>
+                </a>
+                <a href="couple.html" class="weui_media_box weui_media_appmsg">
+                    <div class="weui_media_hd">
+                        <img class="weui_media_appmsg_thumb" src="fonts/one.jpg" alt="">
+                    </div>
+                    <div class="weui_media_bd">
+                        <h4 class="weui_media_title">单人照</h4>
+                        <p class="weui_media_desc">上传你们两人各自照片，你立即知道你们的天生缘分指数</p>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+    <script src="js/jweixin-1.0.0.js"></script>
+    <script src="js/zepto.min.js"></script>
+    <script>
+    $(function () {
+        var timestamp = Date.parse(new Date())/1000;
+        var localurl = encodeURIComponent(window.location.href.split('#')[0]);
+        $.ajax({
+            url: 'http://www.focuswin.cn/wxapi/api/weixin',
+            dataType: "json",
+            data: {
+                noncestr: 'FFUmZdbWVT9mVP7a',
+                timestamp: timestamp,
+                url: window.location.href.split('#')[0]
+            },
+            success: function (data) {
+                wxFace(data.toLowerCase());
+            }
+        })
+        function wxFace(signature) {
+            wx.config({
+                debug: false,
+                appId: 'wxec54ec7f720993da',
+                timestamp: timestamp,
+                nonceStr: 'FFUmZdbWVT9mVP7a',
+                signature: signature,
+                jsApiList: [
+                  'checkJsApi',
+                  'onMenuShareTimeline',
+                  'onMenuShareAppMessage'                  
+                ]
+            });
+        }
+        });
+    wx.ready(function () {
+        var shareData = {
+            title: '颜探',
+            desc: '测测颜的相似度',
+            link: window.location.href,
+            imgUrl: 'http://www.666666666666.cn/WeFace/fonts/family.jpg'
+        };
+        wx.onMenuShareAppMessage(shareData);
+        wx.onMenuShareTimeline(shareData);
+    })
+    </script>
+
+</body>
+</html>

@@ -16,7 +16,7 @@ namespace ProjecToxfordApi.Controllers
     public class ProjecToxfordClientHelper
     {
         private const string serviceHost = "https://api.projectoxford.ai/face/v1.0";
-        private const string KEY = "6b1043bade2646b6bd2b58c4cbe999bf";
+        private const string KEY = "";
         private HttpClient client;
        
 
@@ -64,58 +64,6 @@ namespace ProjecToxfordApi.Controllers
                 return new ProjecToxfordResponseModels(msg, response.StatusCode);
             }
         }
-
-
-        //public async Task<ProjecToxfordResponseModels> PostAsync(string querkey, object body, Dictionary<string, string> querystr = null)
-        //{
-        //    var queryString = HttpUtility.ParseQueryString(string.Empty);
-        //    if (querystr != null)
-        //    {
-        //        foreach (var entry in querystr)
-        //        {
-        //            queryString[entry.Key] = entry.Value;
-        //        }
-        //    }
-        //    var uri = string.Format("{0}/{1}?{2}", serviceHost, querkey, queryString);
-
-        //    var jsonStr = Newtonsoft.Json.JsonConvert.SerializeObject(body);
-        //    byte[] byteData = Encoding.UTF8.GetBytes(jsonStr);
-
-        //    HttpResponseMessage response;
-        //    using (var content = new ByteArrayContent(byteData))
-        //    {
-        //        content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
-        //        response = await client.PostAsync(uri, content);
-        //        var msg = await response.Content.ReadAsStringAsync();
-        //        return new ProjecToxfordResponseModels(msg, response.StatusCode);
-        //    }
-        //}
-
-        //public async Task<ProjecToxfordResponseModels> PostAsync(string querkey, byte[] body, Dictionary<string, string> querystr = null)
-        //{
-        //    var queryString = HttpUtility.ParseQueryString(string.Empty);
-        //    if (querystr != null)
-        //    {
-        //        foreach (var entry in querystr)
-        //        {
-        //            queryString[entry.Key] = entry.Value;
-        //        }
-        //    }
-
-        //    var uri = string.Format("{0}/{1}?{2}", serviceHost, querkey, queryString);
-
-        //    //var jsonStr = Newtonsoft.Json.JsonConvert.SerializeObject(body);
-
-        //    HttpResponseMessage response;
-        //    using (var content = new ByteArrayContent(body))
-        //    {
-        //        content.Headers.ContentType = new MediaTypeHeaderValue("application/octet-stream");
-        //        response = await client.PostAsync(uri, content);
-        //        var msg = await response.Content.ReadAsStringAsync();
-        //        return new ProjecToxfordResponseModels(msg, response.StatusCode);
-        //    }
-        //}
-
 
 
         public HttpResponseMessage CreateHttpResponseMessage(HttpRequestMessage request, ProjecToxfordResponseModels result)
